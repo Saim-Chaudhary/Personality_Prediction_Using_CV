@@ -173,6 +173,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-Your Name - Saim Chaudhary
+ - Saim Chaudhary
 
-Project Link: [[https://github.com/yourusername/personality-prediction-system](https://github.com/Saim-Chaudhary/Personality_Prediction_Using_CV)]([https://github.com/yourusername/personality-prediction-system](https://github.com/Saim-Chaudhary/Personality_Prediction_Using_CV))
+Project Link: [[https://github.com/Saim-Chaudhary/Personality_Prediction_Using_CV](https://github.com/Saim-Chaudhary/Personality_Prediction_Using_CV)]
