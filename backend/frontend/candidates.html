@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidates - Personality Prediction System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <nav class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <i class="fas fa-brain text-2xl mr-3"></i>
+                    <span class="font-bold text-xl">Personality Prediction System</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="hover:text-blue-200">Home</a>
+                    <a href="/upload_cv" class="hover:text-blue-200">Upload CV</a>
+                    <a href="/job_profile" class="hover:text-blue-200">Job Profiles</a>
+                    <a href="/candidates" class="hover:text-blue-200">Candidates</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-8">
+        <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">Ranked Candidates</h1>
+
+            {% if selected_job_id %}
+                <p class="text-gray-600 mb-6">Showing candidates ranked for Job ID: {{ selected_job_id }}</p>
+            {% else %}
+                <p class="text-gray-600 mb-6">Select a job profile to see ranked candidates.</p>
+
+                <div class="mb-6">
+                    <label for="job_select" class="block text-sm font-medium text-gray-700 mb-2">Select Job Profile</label>
+                    <select id="job_select" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">-- Select a job --</option>
+                        {% for job in jobs %}
+                            <option value="{{ job.id }}" {% if job.id == selected_job_id %}selected{% endif %}>{{ job.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+
+            {% if candidates %}
+                <div class="space-y-6">
+                    {% for candidate, score in candidates %}
+                        <div class="border rounded-lg p-6 hover:shadow-lg transition-shadow">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h2 class="text-xl font-semibold text-gray-800">{{ candidate.name }}</h2>
+                                    <p class="text-gray-600">{{ candidate.email }} | {{ candidate.phone }}</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm text-gray-500">Match Score</p>
+                                    <p class="text-2xl font-bold text-blue-600">{{ "%.2f"|format(score * 100) }}%</p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <h3 class="font-semibold text-gray-700 mb-2">Skills</h3>
+                                    <p class="text-gray-600">{{ candidate.skills }}</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-700 mb-2">Experience</h3>
+                                    <p class="text-gray-600">{{ candidate.experience[:100] }}{% if candidate.experience and candidate.experience|length > 100 %}...{% endif %}</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-700 mb-2">Education</h3>
+                                    <p class="text-gray-600">{{ candidate.education[:100] }}{% if candidate.education and candidate.education|length > 100 %}...{% endif %}</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-700 mb-2">Certifications</h3>
+                                    <p class="text-gray-600">{{ candidate.certifications }}</p>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <h3 class="font-semibold text-gray-700 mb-2">Personality Traits</h3>
+                                <div class="space-y-2" id="personality-traits-{{ candidate.id }}">
+                                    <!-- Personality traits will be loaded here via JavaScript -->
+                                    <div class="text-gray-500">Loading personality data...</div>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-end">
+                                <a href="/static/uploads/{{ candidate.cv_filename }}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" target="_blank">
+                                    <i class="fas fa-eye mr-2"></i>View CV
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-gray-500">No candidates found.</p>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2023 Personality Prediction System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Handle job selection
+        const jobSelect = document.getElementById('job_select');
+        if (jobSelect) {
+            jobSelect.addEventListener('change', function() {
+                if (this.value) {
+                    window.location.href = `/candidates?job_id=${this.value}`;
+                } else {
+                    window.location.href = `/candidates`;
+                }
+            });
+        }
+
+        // Function to create personality trait HTML
+        function createTraitHTML(trait, value) {
+            return `
+                <div class="flex items-center">
+                    <span class="w-32 text-sm text-gray-600 capitalize">${trait}:</span>
+                    <div class="flex-1 bg-gray-200 rounded-full h-2.5">
+                        <div class="bg-blue-600 h-2.5 rounded-full progress-bar" style="width: ${value * 100}%"></div>
+                    </div>
+                    <span class="ml-2 text-sm text-gray-600">${value.toFixed(2)}</span>
+                </div>
+            `;
+        }
+
+        // Parse and display personality traits
+        document.addEventListener('DOMContentLoaded', function() {
+            // Store candidate data in a global variable
+            const candidatesData = [
+                {% for candidate, score in candidates %}
+                    {
+                        id: {{ candidate.id }},
+                        testPersonalityTraits: {{ candidate.test_personality_traits | tojson if candidate.test_personality_traits else 'null' }},
+                        personalityTraits: {{ candidate.personality_traits | tojson if candidate.personality_traits else 'null' }}
+                    },
+                {% endfor %}
+            ];
+
+            // Process each candidate
+            candidatesData.forEach(candidateData => {
+                const traitsContainer = document.getElementById(`personality-traits-${candidateData.id}`);
+                if (traitsContainer) {
+                    let traitsHtml = '';
+
+                    // Try to use test_personality_traits first
+                    let traits = candidateData.testPersonalityTraits;
+
+                    // If no test traits, use personality_traits
+                    if (!traits) {
+                        traits = candidateData.personalityTraits;
+                    }
+
+                    // If we have traits data, display it
+                    if (traits && typeof traits === 'object') {
+                        for (const [trait, value] of Object.entries(traits)) {
+                            traitsHtml += createTraitHTML(trait, value);
+                        }
+                    } else {
+                        // If no traits data, show a message
+                        traitsHtml = '<p class="text-gray-500">No personality data available.</p>';
+                    }
+
+                    traitsContainer.innerHTML = traitsHtml;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality Prediction System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom styles for progress bars */
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <nav class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <i class="fas fa-brain text-2xl mr-3"></i>
+                    <span class="font-bold text-xl">Personality Prediction System</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="hover:text-blue-200">Home</a>
+                    <a href="/upload_cv" class="hover:text-blue-200">Upload CV</a>
+                    <a href="/job_profile" class="hover:text-blue-200">Job Profiles</a>
+                    <a href="/candidates" class="hover:text-blue-200">Candidates</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-8">
+        <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-4">Welcome to the Personality Prediction System</h1>
+            <p class="text-gray-600 mb-6">
+                Our system uses artificial intelligence to analyze CVs and personality tests to rank candidates for specific job profiles.
+                This helps HR departments identify the most suitable candidates quickly and efficiently.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-blue-50 p-6 rounded-lg">
+                    <i class="fas fa-file-upload text-blue-600 text-3xl mb-4"></i>
+                    <h2 class="text-xl font-semibold mb-2">Upload CV</h2>
+                    <p class="text-gray-600 mb-4">Upload candidate CVs in PDF format for analysis.</p>
+                    <a href="/upload_cv" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Upload Now</a>
+                </div>
+                <div class="bg-green-50 p-6 rounded-lg">
+                    <i class="fas fa-briefcase text-green-600 text-3xl mb-4"></i>
+                    <h2 class="text-xl font-semibold mb-2">Create Job Profile</h2>
+                    <p class="text-gray-600 mb-4">Define job requirements and desired personality traits.</p>
+                    <a href="/job_profile" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Create Profile</a>
+                </div>
+                <div class="bg-purple-50 p-6 rounded-lg">
+                    <i class="fas fa-users text-purple-600 text-3xl mb-4"></i>
+                    <h2 class="text-xl font-semibold mb-2">View Candidates</h2>
+                    <p class="text-gray-600 mb-4">See ranked candidates based on job requirements.</p>
+                    <a href="/candidates" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">View Candidates</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">How It Works</h2>
+            <div class="space-y-4">
+                <div class="flex items-start">
+                    <div class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">1</div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-1">Upload CVs</h3>
+                        <p class="text-gray-600">HR uploads candidate CVs in PDF format to the system.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">2</div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-1">CV Analysis</h3>
+                        <p class="text-gray-600">Our AI analyzes the CV to extract skills, experience, education, and personality traits.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">3</div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-1">Personality Test</h3>
+                        <p class="text-gray-600">Candidates take an online personality test to provide additional insights.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">4</div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-1">Job Matching</h3>
+                        <p class="text-gray-600">The system matches candidates against job profiles and ranks them by suitability.</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">5</div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-1">Candidate Selection</h3>
+                        <p class="text-gray-600">HR can easily identify the most suitable candidates from the ranked list.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Personality Prediction System. All rights reserved By SamCh.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Any common JavaScript can go here
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload CV - Personality Prediction System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <nav class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <i class="fas fa-brain text-2xl mr-3"></i>
+                    <span class="font-bold text-xl">Personality Prediction System</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="hover:text-blue-200">Home</a>
+                    <a href="/upload_cv" class="hover:text-blue-200">Upload CV</a>
+                    <a href="/job_profile" class="hover:text-blue-200">Job Profiles</a>
+                    <a href="/candidates" class="hover:text-blue-200">Candidates</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-8">
+        <div class="bg-white rounded-lg shadow-md p-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">Upload Candidate CV</h1>
+
+            <form action="/upload_cv" method="post" enctype="multipart/form-data" class="space-y-6">
+                <div>
+                    <label for="cv_file" class="block text-sm font-medium text-gray-700 mb-2">Select CV File (PDF)</label>
+                    <div class="flex items-center justify-center w-full">
+                        <label for="cv_file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+                                <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                <p class="text-xs text-gray-500">PDF (MAX. 16MB)</p>
+                            </div>
+                            <input id="cv_file" name="cv_file" type="file" class="hidden" accept=".pdf" />
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <i class="fas fa-upload mr-2"></i>Upload and Analyze CV
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2023 Personality Prediction System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Display selected file name
+        const fileInput = document.getElementById('cv_file');
+        const fileLabel = fileInput.parentElement.querySelector('p');
+
+        fileInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                fileLabel.textContent = this.files[0].name;
+            }
+        });
+    </script>
+</body>
+</html>

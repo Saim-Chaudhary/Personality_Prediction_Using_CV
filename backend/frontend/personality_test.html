@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personality Test - Personality Prediction System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <nav class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <i class="fas fa-brain text-2xl mr-3"></i>
+                    <span class="font-bold text-xl">Personality Prediction System</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="hover:text-blue-200">Home</a>
+                    <a href="/upload_cv" class="hover:text-blue-200">Upload CV</a>
+                    <a href="/job_profile" class="hover:text-blue-200">Job Profiles</a>
+                    <a href="/candidates" class="hover:text-blue-200">Candidates</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-8">
+        <div class="bg-white rounded-lg shadow-md p-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">Personality Test for {{ candidate.name }}</h1>
+            <p class="text-gray-600 mb-6">Please answer the following questions to help us understand your personality better.</p>
+
+            <form action="/personality_test/{{ candidate.id }}" method="post" class="space-y-6">
+                <div class="space-y-4">
+                    <div class="border-b pb-4">
+                        <p class="font-medium mb-2">1. Do you enjoy trying new and unfamiliar things?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="q1" value="yes" class="mr-2">
+                                <span>Yes</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="q1" value="no" class="mr-2">
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="border-b pb-4">
+                        <p class="font-medium mb-2">2. Are you always prepared and organized?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="q2" value="yes" class="mr-2">
+                                <span>Yes</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="q2" value="no" class="mr-2">
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="border-b pb-4">
+                        <p class="font-medium mb-2">3. Do you enjoy being the center of attention at social gatherings?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="q3" value="yes" class="mr-2">
+                                <span>Yes</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="q3" value="no" class="mr-2">
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="border-b pb-4">
+                        <p class="font-medium mb-2">4. Do you feel concerned about the feelings of others?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="q4" value="yes" class="mr-2">
+                                <span>Yes</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="q4" value="no" class="mr-2">
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="border-b pb-4">
+                        <p class="font-medium mb-2">5. Do you often feel worried or anxious?</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center">
+                                <input type="radio" name="q5" value="yes" class="mr-2">
+                                <span>Yes</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="q5" value="no" class="mr-2">
+                                <span>No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <i class="fas fa-check mr-2"></i>Submit Test
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2023 Personality Prediction System. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

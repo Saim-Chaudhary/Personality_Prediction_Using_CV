@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+python-multipart
+aiofiles
+pdfplumber
+transformers
+torch
+nltk
+pandas
+numpy
+python-jose
+passlib
+bcrypt
+python-dotenv
+jinja2
